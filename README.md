@@ -8,6 +8,7 @@ It's the first container to be created, with the following ENV variables:
 `DB_USERNAME=happs`
 `DB_PASSWORD=happs`
 `DB_DATABASE=happs`
+.
 
 ## php container
 
