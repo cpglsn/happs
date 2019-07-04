@@ -1,0 +1,33 @@
+version: "2"
+services:
+  php:
+    image: php:7.1
+    links:
+      - db
+    volumes:
+      - $PWD:/usr/src/happs
+    depends_on:
+      - db
+    ports:
+       - "8000:8000"
+    working_dir: /usr/src/happs
+    command: >
+      sh -c  "docker-php-ext-install pdo_mysql mysqli
+              apt-get update
+              apt-get install -y zip
+              curl https://getcomposer.org/installer -o composer-setup.php
+              php composer-setup.php
+              rm composer-setup.php
+              php composer.phar update
+              sed 's/DB_HOST=127.0.0.1/DB_HOST=db/g;s/DB_USERNAME=root/DB_USERNAME=happs/g;s/DB_PASSWORD=/DB_PASSWORD=happs/g' .env.example > .env
+              php artisan migrate --seed 
+              php artisan serve --host=0.0.0.0"
+
+
+  db:
+    image: mariadb:10.2
+    environment:
+      MYSQL_RANDOM_ROOT_PASSWORD: "yes"
+      MYSQL_DATABASE: happs
+      MYSQL_USER: happs
+      MYSQL_PASSWORD: happs
