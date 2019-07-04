@@ -16,7 +16,7 @@ It's the first container to be created, with the following ENV variables:
 ## php container
 
 - It's php:7.1
-- Find installed mysql as described in [php image page](https://hub.docker.com/_/php)
+- Find installed mysql extensions as described in [php image page](https://hub.docker.com/_/php)
 - Find installed composer
 
 
