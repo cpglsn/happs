@@ -20,8 +20,12 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: echo Hello, world!
+        run: |
+          sleep 1m
+          echo Hello, world!
 
       # Runs docker hello-world
       - name: Hello from Docker
-        run: docker run hello-world
+        run: |
+          sleep 1m
+          docker run hello-world
